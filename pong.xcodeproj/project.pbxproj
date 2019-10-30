@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2F72F9E4236A285600257E40 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F72F9E3236A285600257E40 /* main.cpp */; };
+		2F72F9EC236A287000257E40 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F72F9EB236A287000257E40 /* OpenGL.framework */; };
+		2F72F9EE236A287B00257E40 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F72F9ED236A287B00257E40 /* GLUT.framework */; };
+		2F72F9F4236A28F700257E40 /* libsfml-system.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F72F9EF236A28F700257E40 /* libsfml-system.2.5.1.dylib */; };
+		2F72F9F5236A28F700257E40 /* libsfml-network.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F72F9F0236A28F700257E40 /* libsfml-network.2.5.1.dylib */; };
+		2F72F9F6236A28F700257E40 /* libsfml-audio.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F72F9F1236A28F700257E40 /* libsfml-audio.2.5.1.dylib */; };
+		2F72F9F7236A28F700257E40 /* libsfml-graphics.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F72F9F2236A28F700257E40 /* libsfml-graphics.2.5.1.dylib */; };
+		2F72F9F8236A28F700257E40 /* libsfml-window.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F72F9F3236A28F700257E40 /* libsfml-window.2.5.1.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +32,13 @@
 /* Begin PBXFileReference section */
 		2F72F9E0236A285600257E40 /* pong */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pong; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F72F9E3236A285600257E40 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		2F72F9EB236A287000257E40 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		2F72F9ED236A287B00257E40 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		2F72F9EF236A28F700257E40 /* libsfml-system.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-system.2.5.1.dylib"; path = "../../../../usr/local/Cellar/sfml/2.5.1/lib/libsfml-system.2.5.1.dylib"; sourceTree = "<group>"; };
+		2F72F9F0236A28F700257E40 /* libsfml-network.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-network.2.5.1.dylib"; path = "../../../../usr/local/Cellar/sfml/2.5.1/lib/libsfml-network.2.5.1.dylib"; sourceTree = "<group>"; };
+		2F72F9F1236A28F700257E40 /* libsfml-audio.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-audio.2.5.1.dylib"; path = "../../../../usr/local/Cellar/sfml/2.5.1/lib/libsfml-audio.2.5.1.dylib"; sourceTree = "<group>"; };
+		2F72F9F2236A28F700257E40 /* libsfml-graphics.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-graphics.2.5.1.dylib"; path = "../../../../usr/local/Cellar/sfml/2.5.1/lib/libsfml-graphics.2.5.1.dylib"; sourceTree = "<group>"; };
+		2F72F9F3236A28F700257E40 /* libsfml-window.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-window.2.5.1.dylib"; path = "../../../../usr/local/Cellar/sfml/2.5.1/lib/libsfml-window.2.5.1.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +46,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F72F9EE236A287B00257E40 /* GLUT.framework in Frameworks */,
+				2F72F9EC236A287000257E40 /* OpenGL.framework in Frameworks */,
+				2F72F9F4236A28F700257E40 /* libsfml-system.2.5.1.dylib in Frameworks */,
+				2F72F9F5236A28F700257E40 /* libsfml-network.2.5.1.dylib in Frameworks */,
+				2F72F9F6236A28F700257E40 /* libsfml-audio.2.5.1.dylib in Frameworks */,
+				2F72F9F7236A28F700257E40 /* libsfml-graphics.2.5.1.dylib in Frameworks */,
+				2F72F9F8236A28F700257E40 /* libsfml-window.2.5.1.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +64,7 @@
 			children = (
 				2F72F9E2236A285600257E40 /* pong */,
 				2F72F9E1236A285600257E40 /* Products */,
+				2F72F9EA236A287000257E40 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +82,20 @@
 				2F72F9E3236A285600257E40 /* main.cpp */,
 			);
 			path = pong;
+			sourceTree = "<group>";
+		};
+		2F72F9EA236A287000257E40 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2F72F9F1236A28F700257E40 /* libsfml-audio.2.5.1.dylib */,
+				2F72F9F2236A28F700257E40 /* libsfml-graphics.2.5.1.dylib */,
+				2F72F9F0236A28F700257E40 /* libsfml-network.2.5.1.dylib */,
+				2F72F9EF236A28F700257E40 /* libsfml-system.2.5.1.dylib */,
+				2F72F9F3236A28F700257E40 /* libsfml-window.2.5.1.dylib */,
+				2F72F9ED236A287B00257E40 /* GLUT.framework */,
+				2F72F9EB236A287000257E40 /* OpenGL.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +275,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/sfml/2.5.1/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/sfml/2.5.1/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -247,6 +288,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/sfml/2.5.1/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/sfml/2.5.1/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
