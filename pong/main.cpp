@@ -1,3 +1,7 @@
+// main.cpp
+// Creates the Game object and plays the game
+// Patrick Zwierzynski
+
 #include <SFML/System.hpp>
 #include <iostream>
 
