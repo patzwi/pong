@@ -8,6 +8,7 @@
 Ball::Ball (sf::Vector2f& new_vel, sf::Vector2f& new_pos) {
     vel = new_vel;
     circle.setPosition(new_pos);
+    circle.setFillColor(sf::Color(rand() % 255, rand() % 255, rand() % 255));
 }
 
 // Get Graphical Sf object

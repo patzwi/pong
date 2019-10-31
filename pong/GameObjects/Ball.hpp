@@ -4,16 +4,17 @@
 
 #ifndef Ball_hpp
 #define Ball_hpp
-#define INIT_SIZE 5
-#define INIT_VEL 0
+#define BALL_INIT_SIZE 15
+#define BALL_INIT_VEL 0
 
 #include <SFML/Graphics.hpp>
+#include <stdlib.h>
 
 class Ball {
     // Describes the velocity of the Ball
-    sf::Vector2f vel{INIT_VEL, INIT_VEL};
+    sf::Vector2f vel{BALL_INIT_VEL, BALL_INIT_VEL};
     // Describes the graphical shape of the ball
-    sf::CircleShape circle{INIT_SIZE};
+    sf::CircleShape circle{BALL_INIT_SIZE};
 public:
     // Construct the ball
     Ball (sf::Vector2f& new_vel, sf::Vector2f& new_pos);
