@@ -13,7 +13,7 @@
 #define BALL_DX 10.f
 #define FRAME_RATE 60
 #define MAX_VEL 50
-#define NUM_BALLS 30
+#define NUM_BALLS 100
 
 int main(int argc, const char * argv[]) {
     
@@ -79,8 +79,6 @@ int main(int argc, const char * argv[]) {
             window.draw(ball.getGraphic());
         }
         window.display();
-        
     }
-    
     return 0;
 }

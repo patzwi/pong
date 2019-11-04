@@ -16,6 +16,7 @@
 		2F72F9F7236A28F700257E40 /* libsfml-graphics.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F72F9F2236A28F700257E40 /* libsfml-graphics.2.5.1.dylib */; };
 		2F72F9F8236A28F700257E40 /* libsfml-window.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F72F9F3236A28F700257E40 /* libsfml-window.2.5.1.dylib */; };
 		2F72F9FC236A2B2900257E40 /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F72F9FA236A2B2900257E40 /* Ball.cpp */; };
+		2F7EFC602370D2D800A5A417 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F7EFC5E2370D2D800A5A417 /* Player.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +43,8 @@
 		2F72F9F3236A28F700257E40 /* libsfml-window.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-window.2.5.1.dylib"; path = "../../../../usr/local/Cellar/sfml/2.5.1/lib/libsfml-window.2.5.1.dylib"; sourceTree = "<group>"; };
 		2F72F9FA236A2B2900257E40 /* Ball.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Ball.cpp; path = GameObjects/Ball.cpp; sourceTree = "<group>"; };
 		2F72F9FB236A2B2900257E40 /* Ball.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Ball.hpp; path = GameObjects/Ball.hpp; sourceTree = "<group>"; };
+		2F7EFC5E2370D2D800A5A417 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = GameObjects/Player.cpp; sourceTree = "<group>"; };
+		2F7EFC5F2370D2D800A5A417 /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Player.hpp; path = GameObjects/Player.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 				2F72F9E3236A285600257E40 /* main.cpp */,
 				2F72F9FA236A2B2900257E40 /* Ball.cpp */,
 				2F72F9FB236A2B2900257E40 /* Ball.hpp */,
+				2F7EFC5E2370D2D800A5A417 /* Player.cpp */,
+				2F7EFC5F2370D2D800A5A417 /* Player.hpp */,
 			);
 			path = pong;
 			sourceTree = "<group>";
@@ -162,6 +167,7 @@
 			files = (
 				2F72F9FC236A2B2900257E40 /* Ball.cpp in Sources */,
 				2F72F9E4236A285600257E40 /* main.cpp in Sources */,
+				2F7EFC602370D2D800A5A417 /* Player.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

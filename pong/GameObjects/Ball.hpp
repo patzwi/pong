@@ -19,7 +19,7 @@ public:
     // Construct the ball
     Ball (sf::Vector2f& new_vel, sf::Vector2f& new_pos);
     
-    // Get Graphical Sf object
+    // Get Graphical SFML Ball object
     const sf::CircleShape& getGraphic();
     
     // Get Velocity
