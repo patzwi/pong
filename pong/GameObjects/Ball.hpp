@@ -4,19 +4,24 @@
 
 #ifndef Ball_hpp
 #define Ball_hpp
-#define BALL_INIT_SIZE 15
-#define BALL_INIT_VEL 0
 
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 
 class Ball {
+    // Describe Ball CONSTANTS
+    const int BALL_INIT_SIZE {15};
+    const int BALL_INIT_SPD  {0};
     // Describes the velocity of the Ball
-    sf::Vector2f vel{BALL_INIT_VEL, BALL_INIT_VEL};
+    sf::Vector2f vel{(float)BALL_INIT_SPD,
+                     (float)BALL_INIT_SPD};
     // Describes the graphical shape of the ball
-    sf::CircleShape circle{BALL_INIT_SIZE};
+    sf::CircleShape circle{(float)BALL_INIT_SIZE};
 public:
-    // Construct the ball
+    // Construct the ball w/ random velocity
+    Ball (sf::Vector2f& new_pos);
+    
+    // DEBUG CONSTRUCTOR
     Ball (sf::Vector2f& new_vel, sf::Vector2f& new_pos);
     
     // Get Graphical SFML Ball object
@@ -42,6 +47,9 @@ public:
     
     // Vertical deflection
     void yDeflect();
+    
+    // Get Radius
+    float getRadius();
 };
 
 #endif /* Ball_hpp */

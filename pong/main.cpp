@@ -8,12 +8,10 @@
 #include <stdlib.h>
 #include <vector>
 #include "Ball.hpp"
+#include "Player.hpp"
 
 #define WIN_INIT_SIZE 1500
-#define BALL_DX 10.f
 #define FRAME_RATE 60
-#define MAX_VEL 50
-#define NUM_BALLS 100
 
 int main(int argc, const char * argv[]) {
     
@@ -21,14 +19,15 @@ int main(int argc, const char * argv[]) {
     sf::RenderWindow window (sf::VideoMode(WIN_INIT_SIZE,WIN_INIT_SIZE), "Temp. Graphics Test");
     window.setFramerateLimit(FRAME_RATE);
     
-    // Create balls
-    std::vector<Ball> balls;
-    for (int i = 0; i < NUM_BALLS; ++i) {
-        sf::Vector2f init_ball_pos ((float)WIN_INIT_SIZE/2, (float)WIN_INIT_SIZE/2);
-        sf::Vector2f init_ball_vel ((rand() % MAX_VEL) - (MAX_VEL/2), (rand() % MAX_VEL) - (MAX_VEL/2));
-        Ball ball(init_ball_vel, init_ball_pos);
-        balls.push_back(ball);
-    }
+    // Create a player
+    sf::Vector2f p1_pad_pos (WIN_INIT_SIZE/15, WIN_INIT_SIZE/2);
+    sf::Vector2f p1_goal_pos (0, 0);
+    Player p1 (WIN_INIT_SIZE, WIN_INIT_SIZE, p1_pad_pos, p1_goal_pos);
+    
+    // Create a ball
+    sf::Vector2f ball_pos (WIN_INIT_SIZE/2, WIN_INIT_SIZE/2);
+    Ball ball (ball_pos);
+    
     
     // Display the window
     while (window.isOpen()) {
@@ -43,41 +42,39 @@ int main(int argc, const char * argv[]) {
             }
         }
         
-//        // Check keys are pressed
-//        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-//            sf::Vector2f pos = ball.getPosition();
-//            ball.setPosition(sf::Vector2f (pos.x, pos.y - BALL_DX));
-//        }
-//
-//        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-//            sf::Vector2f pos = ball.getPosition();
-//            ball.setPosition(sf::Vector2f (pos.x, pos.y + BALL_DX));
-//        }
-//
-//        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-//            sf::Vector2f pos = ball.getPosition();
-//            ball.setPosition(sf::Vector2f (pos.x - BALL_DX, pos.y));
-//        }
-//
-//        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-//            sf::Vector2f pos = ball.getPosition();
-//            ball.setPosition(sf::Vector2f (pos.x  + BALL_DX, pos.y));
-//        }
+        // Check keys are pressed == PADDLE INPUT CONTROL ==
+        sf::Vector2f p1_pos {p1.getPaddlePosition()};
+        sf::Vector2f p1_size {p1.getPaddleShape()};
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && p1_pos.y > 0)
+            p1.dtUpdateUp();
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) &&
+            p1_pos.y + p1_size.y < WIN_INIT_SIZE)
+            p1.dtUpdateDown();
+        
+        // Update Ball Physics
+        // check against screen bounds
+        sf::Vector2f ball_pos {ball.getPosition()};
+        float ball_rad {ball.getRadius()};
+        if (ball_pos.y <= 0 || ball_pos.y + (2 * ball_rad) >= WIN_INIT_SIZE)
+            ball.yDeflect();
+        
+        if (ball_pos.x <= 0 || ball_pos.x + (2 * ball_rad) >= WIN_INIT_SIZE)
+            ball.xDeflect();
+        
+        // check against player 1 bounds
+        if (p1.ballHitsPaddleLeftRight(ball))
+            ball.xDeflect();
+        
+        if (p1.ballHitsPaddleAboveBelow(ball))
+            ball.yDeflect();
+        
+        ball.dtUpdate();
         
         // Update the graphics shown
         window.clear();
-        for (auto& ball : balls) {
-            // Check for deflection
-            sf::Vector2f pos = ball.getPosition();
-            if (pos.y - BALL_INIT_SIZE < -13 || pos.y + BALL_INIT_SIZE > WIN_INIT_SIZE - 20)
-                ball.yDeflect();
-            
-            if (pos.x - BALL_INIT_SIZE < -13 || pos.x + BALL_INIT_SIZE > WIN_INIT_SIZE - 20)
-                ball.xDeflect();
-            
-            ball.dtUpdate();
-            window.draw(ball.getGraphic());
-        }
+        window.draw(p1.getPaddleGraphic());
+        window.draw(ball.getGraphic());
         window.display();
     }
     return 0;
