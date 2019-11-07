@@ -17,7 +17,7 @@
 #define DEBUG_GWIDTH 10.f
 #define DEBUG_GHEIGHT 1000.f
 #define PADDLE_SCALE_H 15
-#define PADDLE_SCALE_W 40
+#define PADDLE_SCALE_W 80
 #define GOAL_SCALE 100
 
 #include <SFML/Graphics.hpp>
@@ -41,6 +41,9 @@ class Player {
     // Helps with collision detection, top and bottom walls
     bool hit_helper_y(const sf::Vector2f b_pos, float b_rad,
                       float p_x, float p_y, const sf::Vector2f p_size);
+    
+    // Color of the Player
+    sf::Color c;
 public:
     // Construct both the Paddle and the Goal Line
     Player(float win_height, float win_width,
@@ -49,6 +52,8 @@ public:
     
     // DEBUGGING CONSTRUCTOR
     Player(sf::Vector2f& pad_pos, sf::Vector2f& goal_pos);
+    
+    const sf::Color& getColor();
     
     // PADDLE METHODS ////////////////////////////////////
     // Get Graphical SFML Paddle Object
@@ -90,6 +95,9 @@ public:
     
     // Huts Left/Right Predicate
     bool ballHitsGoalLeftRight(Ball& ball);
+    
+    // Get the Goal Size
+    const sf::Vector2f& getGoalSize();
 };
 
 #endif /* Player_hpp */

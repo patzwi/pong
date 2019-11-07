@@ -50,6 +50,9 @@ public:
     
     // Get Radius
     float getRadius();
+    
+    // Set Color
+    void setColor(const sf::Color& c);
 };
 
 #endif /* Ball_hpp */

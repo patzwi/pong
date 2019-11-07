@@ -5,10 +5,8 @@
 #include "Ball.hpp"
 
 Ball::Ball (sf::Vector2f& new_pos) {
-    vel = sf::Vector2f ((rand() % 5) + 5, (rand() % 5) + 5);
-//    vel = sf::Vector2f (10, 0);
+    vel = sf::Vector2f ((rand() % 5) + 8, (rand() % 5) + 8);
     circle.setPosition(new_pos);
-    circle.setFillColor(sf::Color(rand() % 255, rand() % 255, rand() % 255));
 }
 
 // DEBUG Ball constructor
@@ -50,3 +48,8 @@ void Ball::yDeflect() {
 
 // Get radius
 float Ball::getRadius() { return circle.getRadius(); }
+
+// Set Ball Color
+void Ball::setColor(const sf::Color& c) {
+    circle.setFillColor(c);
+}

@@ -20,6 +20,11 @@ Player::Player(float win_height, float win_width,
     goal.setSize(sf::Vector2f (win_width/GOAL_SCALE,
                                win_height));
     
+    // Color the player
+    c = sf::Color (rand() % 255, rand() % 255, rand() % 255);
+    paddle.setFillColor(c);
+    goal.setFillColor(c);
+    
     // define the position of the paddle and goal line
     paddle.setPosition(pad_pos);
     goal.setPosition(goal_pos);
@@ -36,6 +41,11 @@ Player::Player(sf::Vector2f& pad_pos, sf::Vector2f& goal_pos) {
     // define the position of the paddle and goal line
     paddle.setPosition(pad_pos);
     goal.setPosition(goal_pos);
+}
+
+// Get Ball Color
+const sf::Color& Player::getColor() {
+    return c;
 }
 
 // PADDLE METHODS ////////////////////////////////////
@@ -141,5 +151,9 @@ void Player::setGoalPosition(const sf::Vector2f& new_pos) { goal.setPosition(new
 bool Player::ballHitsGoalLeftRight(Ball& ball) {
     // TODO
     return false;
+}
+
+const sf::Vector2f& Player::getGoalSize() {
+    return goal.getSize();
 }
 

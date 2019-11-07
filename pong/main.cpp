@@ -19,10 +19,16 @@ int main(int argc, const char * argv[]) {
     sf::RenderWindow window (sf::VideoMode(WIN_INIT_SIZE,WIN_INIT_SIZE), "Temp. Graphics Test");
     window.setFramerateLimit(FRAME_RATE);
     
-    // Create a player
+    // Create a player (left)
     sf::Vector2f p1_pad_pos (WIN_INIT_SIZE/15, WIN_INIT_SIZE/2);
     sf::Vector2f p1_goal_pos (0, 0);
     Player p1 (WIN_INIT_SIZE, WIN_INIT_SIZE, p1_pad_pos, p1_goal_pos);
+    
+    // Create a player (right)
+    sf::Vector2f p2_pad_pos((14 * WIN_INIT_SIZE)/15, WIN_INIT_SIZE/2);
+    sf::Vector2f goal_size = p1.getGoalSize();
+    sf::Vector2f p2_goal_pos (WIN_INIT_SIZE - goal_size.x, 0);
+    Player p2 (WIN_INIT_SIZE, WIN_INIT_SIZE, p2_pad_pos, p2_goal_pos);
     
     // Create a ball
     sf::Vector2f ball_pos (WIN_INIT_SIZE/2, WIN_INIT_SIZE/2);
@@ -45,12 +51,22 @@ int main(int argc, const char * argv[]) {
         // Check keys are pressed == PADDLE INPUT CONTROL ==
         sf::Vector2f p1_pos {p1.getPaddlePosition()};
         sf::Vector2f p1_size {p1.getPaddleShape()};
+        sf::Vector2f p2_pos {p2.getPaddlePosition()};
+        sf::Vector2f p2_size {p2.getPaddleShape()};
+        
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && p1_pos.y > 0)
             p1.dtUpdateUp();
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) &&
             p1_pos.y + p1_size.y < WIN_INIT_SIZE)
             p1.dtUpdateDown();
+        
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && p2_pos.y > 0)
+            p2.dtUpdateUp();
+        
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) &&
+            p2_pos.y + p2_size.y < WIN_INIT_SIZE)
+            p2.dtUpdateDown();
         
         // Update Ball Physics
         // check against screen bounds
@@ -63,17 +79,28 @@ int main(int argc, const char * argv[]) {
             ball.xDeflect();
         
         // check against player 1 bounds
-        if (p1.ballHitsPaddleLeftRight(ball))
+        if (p1.ballHitsPaddleLeftRight(ball)) {
             ball.xDeflect();
+            ball.setColor(p1.getColor());
+        }
         
-        if (p1.ballHitsPaddleAboveBelow(ball))
-            ball.yDeflect();
+        // check against player 2 bounds
+        if (p2.ballHitsPaddleLeftRight(ball)) {
+            ball.xDeflect();
+            ball.setColor(p2.getColor());
+        }
         
         ball.dtUpdate();
         
         // Update the graphics shown
         window.clear();
+        
         window.draw(p1.getPaddleGraphic());
+        window.draw(p1.getGoalGraphic());
+        
+        window.draw(p2.getPaddleGraphic());
+        window.draw(p2.getGoalGraphic());
+        
         window.draw(ball.getGraphic());
         window.display();
     }
