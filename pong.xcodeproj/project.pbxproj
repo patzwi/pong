@@ -15,8 +15,10 @@
 		2F72F9F6236A28F700257E40 /* libsfml-audio.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F72F9F1236A28F700257E40 /* libsfml-audio.2.5.1.dylib */; };
 		2F72F9F7236A28F700257E40 /* libsfml-graphics.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F72F9F2236A28F700257E40 /* libsfml-graphics.2.5.1.dylib */; };
 		2F72F9F8236A28F700257E40 /* libsfml-window.2.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F72F9F3236A28F700257E40 /* libsfml-window.2.5.1.dylib */; };
-		2F72F9FC236A2B2900257E40 /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F72F9FA236A2B2900257E40 /* Ball.cpp */; };
-		2F7EFC602370D2D800A5A417 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F7EFC5E2370D2D800A5A417 /* Player.cpp */; };
+		2F8E331A237CB12200A41499 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E3316237CB12200A41499 /* Player.cpp */; };
+		2F8E331B237CB12200A41499 /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E3319237CB12200A41499 /* Ball.cpp */; };
+		2F8E3321237CB1D700A41499 /* Pong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E331F237CB1D700A41499 /* Pong.cpp */; };
+		2F8E3324237DF6C400A41499 /* Audio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F8E3322237DF6C400A41499 /* Audio.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,10 +43,15 @@
 		2F72F9F1236A28F700257E40 /* libsfml-audio.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-audio.2.5.1.dylib"; path = "../../../../usr/local/Cellar/sfml/2.5.1/lib/libsfml-audio.2.5.1.dylib"; sourceTree = "<group>"; };
 		2F72F9F2236A28F700257E40 /* libsfml-graphics.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-graphics.2.5.1.dylib"; path = "../../../../usr/local/Cellar/sfml/2.5.1/lib/libsfml-graphics.2.5.1.dylib"; sourceTree = "<group>"; };
 		2F72F9F3236A28F700257E40 /* libsfml-window.2.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-window.2.5.1.dylib"; path = "../../../../usr/local/Cellar/sfml/2.5.1/lib/libsfml-window.2.5.1.dylib"; sourceTree = "<group>"; };
-		2F72F9FA236A2B2900257E40 /* Ball.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Ball.cpp; path = GameObjects/Ball.cpp; sourceTree = "<group>"; };
-		2F72F9FB236A2B2900257E40 /* Ball.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Ball.hpp; path = GameObjects/Ball.hpp; sourceTree = "<group>"; };
-		2F7EFC5E2370D2D800A5A417 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = GameObjects/Player.cpp; sourceTree = "<group>"; };
-		2F7EFC5F2370D2D800A5A417 /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Player.hpp; path = GameObjects/Player.hpp; sourceTree = "<group>"; };
+		2F8E3312237C997100A41499 /* GameSounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GameSounds; sourceTree = "<group>"; };
+		2F8E3316237CB12200A41499 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		2F8E3317237CB12200A41499 /* Ball.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Ball.hpp; sourceTree = "<group>"; };
+		2F8E3318237CB12200A41499 /* Player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
+		2F8E3319237CB12200A41499 /* Ball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ball.cpp; sourceTree = "<group>"; };
+		2F8E331F237CB1D700A41499 /* Pong.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pong.cpp; sourceTree = "<group>"; };
+		2F8E3320237CB1D700A41499 /* Pong.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Pong.hpp; sourceTree = "<group>"; };
+		2F8E3322237DF6C400A41499 /* Audio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Audio.cpp; sourceTree = "<group>"; };
+		2F8E3323237DF6C400A41499 /* Audio.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Audio.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,11 +92,9 @@
 		2F72F9E2236A285600257E40 /* pong */ = {
 			isa = PBXGroup;
 			children = (
+				2F8E3315237CB12200A41499 /* GameObjects */,
+				2F8E3312237C997100A41499 /* GameSounds */,
 				2F72F9E3236A285600257E40 /* main.cpp */,
-				2F72F9FA236A2B2900257E40 /* Ball.cpp */,
-				2F72F9FB236A2B2900257E40 /* Ball.hpp */,
-				2F7EFC5E2370D2D800A5A417 /* Player.cpp */,
-				2F7EFC5F2370D2D800A5A417 /* Player.hpp */,
 			);
 			path = pong;
 			sourceTree = "<group>";
@@ -106,6 +111,21 @@
 				2F72F9EB236A287000257E40 /* OpenGL.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2F8E3315237CB12200A41499 /* GameObjects */ = {
+			isa = PBXGroup;
+			children = (
+				2F8E331F237CB1D700A41499 /* Pong.cpp */,
+				2F8E3320237CB1D700A41499 /* Pong.hpp */,
+				2F8E3316237CB12200A41499 /* Player.cpp */,
+				2F8E3317237CB12200A41499 /* Ball.hpp */,
+				2F8E3318237CB12200A41499 /* Player.hpp */,
+				2F8E3319237CB12200A41499 /* Ball.cpp */,
+				2F8E3322237DF6C400A41499 /* Audio.cpp */,
+				2F8E3323237DF6C400A41499 /* Audio.hpp */,
+			);
+			path = GameObjects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,9 +185,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F72F9FC236A2B2900257E40 /* Ball.cpp in Sources */,
+				2F8E331B237CB12200A41499 /* Ball.cpp in Sources */,
+				2F8E3321237CB1D700A41499 /* Pong.cpp in Sources */,
+				2F8E331A237CB12200A41499 /* Player.cpp in Sources */,
 				2F72F9E4236A285600257E40 /* main.cpp in Sources */,
-				2F7EFC602370D2D800A5A417 /* Player.cpp in Sources */,
+				2F8E3324237DF6C400A41499 /* Audio.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +246,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -276,6 +299,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

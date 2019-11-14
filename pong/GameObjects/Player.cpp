@@ -1,10 +1,7 @@
 //
 //  Player.cpp
-//  pong
-//
-//  Created by Patrick Z on 11/4/19.
-//  Copyright © 2019 Patrick Z. All rights reserved.
-//
+//  pong player implementation
+//  Patrick Zwierzynski
 
 #include "Player.hpp"
 
@@ -149,7 +146,26 @@ void Player::setGoalPosition(const sf::Vector2f& new_pos) { goal.setPosition(new
 
 // Huts Left/Right Predicate
 bool Player::ballHitsGoalLeftRight(Ball& ball) {
-    // TODO
+    sf::CircleShape b {ball.getGraphic()};
+    // ball properties
+    sf::Vector2f b_pos {b.getPosition()};
+    float b_rad {b.getRadius()};
+    // paddle properties
+    sf::Vector2f g_pos {goal.getPosition()};
+    sf::Vector2f g_size {goal.getSize()};
+    float left_x = g_pos.x;
+    float right_x = g_pos.x + g_size.x;
+    // collision logic
+    if (hit_helper_x(b_pos, b_rad, left_x, g_pos.y, g_size)) {
+        ball.setPosition(sf::Vector2f(left_x - (2 * b_rad), b_pos.y));
+        return true;
+    }
+    
+    if (hit_helper_x(b_pos, b_rad, right_x, g_pos.y, g_size)) {
+        ball.setPosition(sf::Vector2f(right_x, b_pos.y));
+        return true;
+    }
+    
     return false;
 }
 
