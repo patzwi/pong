@@ -39,14 +39,18 @@ class Pong {
     Ball * ball;
     
     // Audio Data
-    const Audio game_sounds;
+    Audio game_sounds;
     
     // Gameplay Parameters
     int num_players;
-    bool newRound = true;
+    int p_left_score = 0;
+    int p_right_score = 0;
+    bool live = false;
+    
+    void new_round();
     
     // Modular Motion
-    // For convenience
+    // For convenience with motion predicate types
     typedef bool (Pong::*MotionPred_ptr)(sf::Vector2f&, sf::Vector2f&, sf::Vector2f&);
     typedef bool MotionPred(sf::Vector2f&, sf::Vector2f&, sf::Vector2f&);
     
@@ -57,10 +61,8 @@ class Pong {
     
     MotionPred basic_ai_Up;
     MotionPred basic_ai_Down;
-    MotionPred p_left_manualUp;
-    MotionPred p_left_manualDown;
-    MotionPred p_right_manualUp;
-    MotionPred p_right_manualDown;
+    MotionPred p_manual_Up;
+    MotionPred p_manual_Down;
     
 public:
     // Constructor

@@ -6,7 +6,7 @@
 #include "Player.hpp"
 
 // ACTUAL CONSTRUCTOR
-Player::Player(float win_height, float win_width,
+Player::Player(float win_width, float win_height,
                sf::Vector2f& pad_pos,
                sf::Vector2f& goal_pos) {
     

@@ -12,8 +12,8 @@
 
 class Audio {
     // Filenames
-    const char * filename_wall_bounce = "../GameSounds/wall_bounce.wav";
-    const char * filename_paddle_bounce = "../GameSounds/paddle_bounce.wav";
+    const char * filename_wall_bounce = "GameSounds/wall_bounce.wav";
+    const char * filename_paddle_bounce = "GameSounds/paddle_bounce.wav";
     
     // Sound Buffer Objects
     sf::SoundBuffer audio_buffer_wall;

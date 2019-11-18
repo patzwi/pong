@@ -37,16 +37,16 @@ Pong::Pong(int win_width, int win_height, int num_p) :
             p_right_moveDown = &Pong::basic_ai_Down;
             break;
         case 1:
-            p_left_moveUp = &Pong::p_left_manualUp;
-            p_left_moveDown = &Pong::p_left_manualDown;
+            p_left_moveUp = &Pong::p_manual_Up;
+            p_left_moveDown = &Pong::p_manual_Down;
             p_right_moveUp = &Pong::basic_ai_Up;
             p_right_moveDown = &Pong::basic_ai_Down;
             break;
         case 2:
-            p_left_moveUp = &Pong::p_left_manualUp;
-            p_left_moveDown = &Pong::p_left_manualDown;
-            p_right_moveUp = &Pong::p_right_manualUp;
-            p_right_moveDown = &Pong::p_right_manualDown;
+            p_left_moveUp = &Pong::p_manual_Up;
+            p_left_moveDown = &Pong::p_manual_Down;
+            p_right_moveUp = &Pong::p_manual_Up;
+            p_right_moveDown = &Pong::p_manual_Down;
             break;
         default:
             std::cerr << "Invalid Number of Players" << std::endl;
@@ -76,40 +76,120 @@ void Pong::play() {
             }
         }
         
-        // 
+        // Update private members
+        p1_pad_pos = p_left->getPaddlePosition();
+        sf::Vector2f p1_size {p_left->getPaddleShape()};
+        p2_pad_pos = p_right->getPaddlePosition();
+        sf::Vector2f p2_size {p_right->getPaddleShape()};
+        ball_pos = ball->getPosition();
+        
+        // Input control
+        if ((this->*p_left_moveUp)(ball_pos, p1_pad_pos, p1_size))
+            p_left->dtUpdateUp();
+        
+        if ((this->*p_left_moveDown)(ball_pos, p1_pad_pos, p1_size))
+            p_left->dtUpdateDown();
+            
+        if ((this->*p_right_moveUp)(ball_pos, p2_pad_pos, p2_size))
+            p_right->dtUpdateUp();
+        
+        if ((this->*p_right_moveDown)(ball_pos, p2_pad_pos, p2_size))
+            p_right->dtUpdateDown();
+        
+        // Ball Motion
+        // -- check against screen bounds
+        float ball_rad {ball->getRadius()};
+        if (live && (ball_pos.y <= 0 || ball_pos.y + (2 * ball_rad) >= window_height)) {
+            ball->yDeflect();
+            game_sounds.play_wall_bounce();
+        }
+        
+        // -- check if hits against left player bounds
+        if (live && p_left->ballHitsPaddleLeftRight(*ball)) {
+            ball->xDeflect();
+            ball->setColor(p_left->getColor());
+            game_sounds.play_paddle_bounce();
+        }
+        
+        // -- check if hits against right player bounds
+        if (live && p_right->ballHitsPaddleLeftRight(*ball)) {
+            ball->xDeflect();
+            ball->setColor(p_right->getColor());
+            game_sounds.play_paddle_bounce();
+        }
+        
+        // Goal Score Check
+        // -- left player wall
+        if (live && p_left->ballHitsGoalLeftRight(*ball)) {
+            ++p_right_score; // right player scores
+            new_round();
+        }
+        
+        // -- right player wall
+        if (live && p_right->ballHitsGoalLeftRight(*ball)) {
+            ++p_left_score;
+            new_round();
+        }
+        
+        // Update the Graphics
+        // -- update the ball position
+        if (live) ball->dtUpdate();
+        
+        // -- display the new game state
+        game_window->clear();
+        
+        game_window->draw(p_left->getPaddleGraphic());
+        game_window->draw(p_left->getGoalGraphic());
+        
+        game_window->draw(p_right->getPaddleGraphic());
+        game_window->draw(p_right->getGoalGraphic());
+        
+        game_window->draw(ball->getGraphic());
+        
+        if (!live) {
+            sf::Vector2f ball_vel {ball->getVelocity()};
+            sf::Vertex line[] = {
+                sf::Vertex (ball_pos + (sf::Vector2f(10,10))),
+                sf::Vertex (sf::Vector2f(ball_pos.x + ball_vel.x * 5,
+                                         ball_pos.y + ball_vel.y * 5))
+            };
+            game_window->draw(line, 2, sf::Lines);
+            live = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+        }
+        
+        game_window->display();
     }
 }
 
 // Modular AI Motion Predicates
 // --Up
 bool Pong::basic_ai_Up(sf::Vector2f& b_pos, sf::Vector2f& p_pos, sf::Vector2f& p_size) {
-    // TODO
-    return false;
+    return (b_pos.y < p_pos.y && p_pos.y > 0 && live);
 }
 // --Down
 bool Pong::basic_ai_Down(sf::Vector2f& b_pos, sf::Vector2f& p_pos, sf::Vector2f& p_size) {
-    // TODO
-    return false;
+    return (b_pos.y > p_pos.y && p_pos.y + p_size.y < window_height && live);
 }
 
-// Modular Player Motion Predicates
-// --Left & Up
-bool Pong::p_left_manualUp(sf::Vector2f& b_pos, sf::Vector2f& p_pos, sf::Vector2f& p_size) {
-    // TODO
-    return false;
+// Modular Manual Motion Predicates
+// --Up
+bool Pong::p_manual_Up(sf::Vector2f& b_pos, sf::Vector2f& p_pos, sf::Vector2f& p_size) {
+    return ((p_pos.x < window_width/2 && sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) ||
+            (p_pos.x > window_width/2 && sf::Keyboard::isKeyPressed(sf::Keyboard::P))) &&
+           p_pos.y > 0 && live;
 }
-// --Left & Down
-bool Pong::p_left_manualDown(sf::Vector2f& b_pos, sf::Vector2f& p_pos, sf::Vector2f& p_size) {
-    // TODO
-    return false;
+// --Down
+bool Pong::p_manual_Down(sf::Vector2f& b_pos, sf::Vector2f& p_pos, sf::Vector2f& p_size) {
+    return ((p_pos.x < window_width/2 && sf::Keyboard::isKeyPressed(sf::Keyboard::A)) ||
+            (p_pos.x > window_width/2 && sf::Keyboard::isKeyPressed(sf::Keyboard::L))) &&
+           p_pos.y + p_size.y < window_height && live;
 }
-// --Right & Up
-bool Pong::p_right_manualUp(sf::Vector2f& b_pos, sf::Vector2f& p_pos, sf::Vector2f& p_size) {
-    // TODO
-    return false;
-}
-// --Right & Down
-bool Pong::p_right_manualDown(sf::Vector2f& b_pos, sf::Vector2f& p_pos, sf::Vector2f& p_size) {
-    // TODO
-    return false;
+
+void Pong::new_round() {
+    live = false;
+    ball->setPosition(sf::Vector2f(window_width/2, window_height/2));
+    p_left->setPaddlePosition(sf::Vector2f(p1_pad_pos.x, window_height/2));
+    p_right->setPaddlePosition(sf::Vector2f(p2_pad_pos.x, window_height/2));
+    
+    // update score board
 }
